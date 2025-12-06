@@ -57,18 +57,15 @@ void Stack<T>::CopyFrom(const Stack& other)
         return;
     }
     
-    // Создаем массив для временного хранения элементов
     T* temp = new T[other.size_];
     Node<T>* current = other.top_;
     
-    // Собираем элементы в обратном порядке
     for (size_t i = other.size_; i > 0; --i)
     {
         temp[i - 1] = current->data;
         current = current->next;
     }
     
-    // Заполняем стек
     for (size_t i = 0; i < other.size_; ++i)
     {
         Push(temp[i]);
@@ -81,23 +78,19 @@ void Stack<T>::CopyFrom(const Stack& other)
 template <typename T>
 void Stack<T>::CopyFrom(const Container<T>& other)
 {
-    // Временный стек для реверса
     Stack<T> temp;
     Container<T>* tempContainer = &temp;
     
-    // Создаем копию контейнера
     Container<T>* otherCopy = dynamic_cast<Container<T>*>(const_cast<Container<T>*>(&other));
     if (!otherCopy)
     {
         throw std::bad_cast();
     }
-    
-    // Копируем элементы во временный контейнер
+
     Stack<T> reversed;
     size_t size = other.Size();
     T* elements = new T[size];
     
-    // Собираем элементы
     size_t index = 0;
     Container<T>* nonConstOther = const_cast<Container<T>*>(&other);
     while (!nonConstOther->IsEmpty())
@@ -106,7 +99,6 @@ void Stack<T>::CopyFrom(const Container<T>& other)
         nonConstOther->Pop();
     }
     
-    // Восстанавливаем оригинал и заполняем стек
     for (size_t i = size; i > 0; --i)
     {
         this->Push(elements[i - 1]);

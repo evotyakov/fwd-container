@@ -67,7 +67,6 @@ void Queue<T>::CopyFrom(const Container<T>& other)
     Container<T>* nonConstOther = const_cast<Container<T>*>(&other);
     Container<T>* temp = new Queue<T>;
     
-    // Копируем элементы
     while (!nonConstOther->IsEmpty())
     {
         T value = nonConstOther->GetFront();
@@ -76,7 +75,6 @@ void Queue<T>::CopyFrom(const Container<T>& other)
         nonConstOther->Pop();
     }
     
-    // Восстанавливаем оригинал
     while (!temp->IsEmpty())
     {
         nonConstOther->Push(temp->GetFront());
