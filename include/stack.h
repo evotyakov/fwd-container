@@ -5,49 +5,49 @@
 #include "node.h"
 
 template <typename T>
-class Stack : public Container<T>
+class stack : public fwd_container<T>
 {
 private:
-    Node<T>* top_;
-    size_t size_;
+    node<T>* top;
+    size_t length;
     
 public:
     // Конструкторы
-    Stack();
-    Stack(const Stack& other);
-    Stack(Stack&& other) noexcept;
+    stack();
+    stack(const stack& other);
+    stack(stack&& other) noexcept;
     
     // Деструктор
-    ~Stack();
+    ~stack();
     
     // Копирование из другого контейнера
-    Stack(const Container<T>& other);
+    stack(const fwd_container<T>& other);
     
     // Присваивание
-    Stack<T>& operator=(const Stack<T>& other);
-    Stack<T>& operator=(Stack<T>&& other) noexcept;
-    Container<T>& operator=(const Container<T>& other) override;
-    Container<T>& operator=(Container<T>&& other) override;
+    stack<T>& operator=(const stack<T>& other);
+    stack<T>& operator=(stack<T>&& other) noexcept;
+    fwd_container<T>& operator=(const fwd_container<T>& other) override;
+    fwd_container<T>& operator=(fwd_container<T>&& other) override;
     
     // Методы
-    void Push(const T& value) override;
-    void Push(T&& value) override;
-    void Pop() override;
-    T& GetFront() override;
-    const T& GetFront() const override;
-    bool IsEmpty() const override;
-    size_t Size() const override;
+    void push(const T& value) override;
+    void push(T&& value) override;
+    void pop() override;
+    T& get_front() override;
+    const T& get_front() const override;
+    bool is_empty() const override;
+    size_t size() const override;
     
 protected:
-    void Print(std::ostream& os) const override;
+    void print(std::ostream& os) const override;
     
 private:
-    void Clear();
-    void CopyFrom(const Stack& other);
-    void CopyFrom(const Container<T>& other);
+    void clear();
+    void copy_from(const stack& other);
+    void copy_from(const fwd_container<T>& other);
 };
 
 // Реализация методов
-#include "stack_impl.h"
+#include "stack.tpp"
 
 #endif

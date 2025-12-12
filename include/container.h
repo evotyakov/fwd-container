@@ -22,43 +22,40 @@ public:
 };
 
 template <typename T>
-class Container
+class fwd_container
 {
 public:
-    virtual ~Container() = default;
-    
-    // Основные методы
-    virtual void Push(const T& value) = 0;
-    virtual void Push(T&& value) = 0;
-    virtual void Pop() = 0;
-    virtual T& GetFront() = 0;
-    virtual const T& GetFront() const = 0;
-    virtual bool IsEmpty() const = 0;
-    virtual size_t Size() const = 0;
-    
-    // Присваивание
-    virtual Container<T>& operator=(const Container<T>& other) = 0;
-    virtual Container<T>& operator=(Container<T>&& other) = 0;
-    
-    // Ввод/вывод
-    friend std::ostream& operator<<(std::ostream& os, const Container<T>& container)
+    virtual ~fwd_container() = default;
+
+    virtual void push(const T& value) = 0;
+    virtual void push(T&& value) = 0;
+    virtual void pop() = 0;
+    virtual T& get_front() = 0;
+    virtual const T& get_front() const = 0;
+    virtual bool is_empty() const = 0;
+    virtual size_t size() const = 0;
+
+    virtual fwd_container<T>& operator=(const fwd_container<T>& other) = 0;
+    virtual fwd_container<T>& operator=(fwd_container<T>&& other) = 0;
+
+    friend std::ostream& operator<<(std::ostream& os, const fwd_container<T>& container)
     {
-        container.Print(os);
+        container.print(os);
         return os;
     }
     
-    friend std::istream& operator>>(std::istream& is, Container<T>& container)
+    friend std::istream& operator>>(std::istream& is, fwd_container<T>& container)
     {
         T value;
         if (is >> value)
         {
-            container.Push(value);
+            container.push(value);
         }
         return is;
     }
 
 protected:
-    virtual void Print(std::ostream& os) const = 0;
+    virtual void print(std::ostream& os) const = 0;
 };
 
 #endif

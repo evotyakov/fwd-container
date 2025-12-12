@@ -1,6 +1,6 @@
 #include <iostream>
-#include "stack.h"
-#include "queue.h"
+#include "C:\Computer Science\cpp\fwd-container\include\stack.h"
+#include "C:\Computer Science\cpp\fwd-container\include\queue.h"
 
 int main()
 {
@@ -8,60 +8,60 @@ int main()
     {
         // Тестирование стека
         std::cout << "Testing Stack" << std::endl;
-        Stack<int> stack1;
+        stack<int> stack1;
         
-        stack1.Push(1);
-        stack1.Push(2);
-        stack1.Push(3);
+        stack1.push(1);
+        stack1.push(2);
+        stack1.push(3);
         
         std::cout << "Stack1: " << stack1 << std::endl;
-        std::cout << "Size: " << stack1.Size() << std::endl;
-        std::cout << "Front: " << stack1.GetFront() << std::endl;
+        std::cout << "Size: " << stack1.size() << std::endl;
+        std::cout << "Front: " << stack1.get_front() << std::endl;
         
-        stack1.Pop();
+        stack1.pop();
         std::cout << "After pop: " << stack1 << std::endl;
         
         // Тестирование копирования
-        Stack<int> stack2 = stack1;
+        stack<int> stack2 = stack1;
         std::cout << "Stack2 (copy): " << stack2 << std::endl;
         
         // Тестирование перемещения
-        Stack<int> stack3 = std::move(stack2);
+        stack<int> stack3 = std::move(stack2);
         std::cout << "Stack3 (move): " << stack3 << std::endl;
         std::cout << "Stack2 after move (should be empty): " 
-                  << (stack2.IsEmpty() ? "empty" : "not empty") << std::endl;
+                  << (stack2.is_empty() ? "empty" : "not empty") << std::endl;
         
         // Тестирование очереди
         std::cout << "\nTesting Queue" << std::endl;
-        Queue<int> queue1;
+        queue<int> queue1;
         
-        queue1.Push(1);
-        queue1.Push(2);
-        queue1.Push(3);
+        queue1.push(1);
+        queue1.push(2);
+        queue1.push(3);
         
         std::cout << "Queue1: " << queue1 << std::endl;
-        std::cout << "Size: " << queue1.Size() << std::endl;
-        std::cout << "Front: " << queue1.GetFront() << std::endl;
+        std::cout << "Size: " << queue1.size() << std::endl;
+        std::cout << "Front: " << queue1.get_front() << std::endl;
         
-        queue1.Pop();
+        queue1.pop();
         std::cout << "After pop: " << queue1 << std::endl;
         
         // Тестирование оператора ввода
         std::cout << "\nTesting input operator" << std::endl;
-        Stack<int> stackInput;
+        stack<int> stackInput;
         std::cout << "Enter 3 integers for stack: ";
         std::cin >> stackInput >> stackInput >> stackInput;
         std::cout << "Input stack: " << stackInput << std::endl;
         
         // Полиморфное использование
         std::cout << "\nPolymorphic usage" << std::endl;
-        Container<int>* container1 = new Stack<int>();
-        Container<int>* container2 = new Queue<int>();
+        fwd_container<int>* container1 = new stack<int>();
+        fwd_container<int>* container2 = new queue<int>();
         
-        container1->Push(10);
-        container1->Push(20);
-        container2->Push(30);
-        container2->Push(40);
+        container1->push(10);
+        container1->push(20);
+        container2->push(30);
+        container2->push(40);
         
         std::cout << "Container1 (Stack): " << *container1 << std::endl;
         std::cout << "Container2 (Queue): " << *container2 << std::endl;
@@ -74,10 +74,10 @@ int main()
         delete container2;
         
         std::cout << "\nTesting exceptions" << std::endl;
-        Stack<int> emptyStack;
+        stack<int> emptyStack;
         try
         {
-            emptyStack.Pop();
+            emptyStack.pop();
         }
         catch (const ContainerException& e)
         {

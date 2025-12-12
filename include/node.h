@@ -2,29 +2,25 @@
 #define NODE_H
 
 template <typename T>
-class Node
+class node
 {
 public:
     T data;
-    Node* next;
+    node* next;
     
-    Node(const T& value) : data(value), next(nullptr)
-    {
-    }
+    node(const T& value) : data(value), next(nullptr) {}
     
-    Node(T&& value) : data(std::move(value)), next(nullptr)
-    {
-    }
+    node(T&& value) : data(std::move(value)), next(nullptr) {}
     
-    Node(const Node&) = delete;
-    Node& operator=(const Node&) = delete;
+    node(const node&) = delete;
+    node& operator=(const node&) = delete;
     
-    Node(Node&& other) noexcept : data(std::move(other.data)), next(other.next)
+    node(node&& other) noexcept : data(std::move(other.data)), next(other.next)
     {
         other.next = nullptr;
     }
     
-    Node& operator=(Node&& other) noexcept
+    node& operator=(node&& other) noexcept
     {
         if (this != &other)
         {
@@ -35,7 +31,7 @@ public:
         return *this;
     }
     
-    ~Node() = default;
+    ~node() = default;
 };
 
 #endif

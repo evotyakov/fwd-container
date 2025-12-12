@@ -5,49 +5,49 @@
 #include "node.h"
 
 template <typename T>
-class Queue : public Container<T>
+class queue : public fwd_container<T>
 {
 private:
-    Node<T>* front_;
-    Node<T>* rear_;
-    size_t size_;
+    node<T>* front;
+    node<T>* rear;
+    size_t length;
     
 public:
     // Конструкторы
-    Queue();
-    Queue(const Queue& other);
-    Queue(Queue&& other) noexcept;
+    queue();
+    queue(const queue& other);
+    queue(queue&& other) noexcept;
     
     // Деструктор
-    ~Queue();
+    ~queue();
     
     // Копирование из другого контейнера
-    Queue(const Container<T>& other);
+    queue(const fwd_container<T>& other);
     
     // Присваивание
-    Queue<T>& operator=(const Queue<T>& other);
-    Queue<T>& operator=(Queue<T>&& other) noexcept;
-    Container<T>& operator=(const Container<T>& other) override;
-    Container<T>& operator=(Container<T>&& other) override;
+    queue<T>& operator=(const queue<T>& other);
+    queue<T>& operator=(queue<T>&& other) noexcept;
+    fwd_container<T>& operator=(const fwd_container<T>& other) override;
+    fwd_container<T>& operator=(fwd_container<T>&& other) override;
     
     // Методы
-    void Push(const T& value) override;
-    void Push(T&& value) override;
-    void Pop() override;
-    T& GetFront() override;
-    const T& GetFront() const override;
-    bool IsEmpty() const override;
-    size_t Size() const override;
+    void push(const T& value) override;
+    void push(T&& value) override;
+    void pop() override;
+    T& get_front() override;
+    const T& get_front() const override;
+    bool is_empty() const override;
+    size_t size() const override;
     
 protected:
-    void Print(std::ostream& os) const override;
+    void print(std::ostream& os) const override;
     
 private:
-    void Clear();
-    void CopyFrom(const Queue& other);
-    void CopyFrom(const Container<T>& other);
+    void clear();
+    void copy_from(const queue& other);
+    void copy_from(const fwd_container<T>& other);
 };
 
-#include "queue_impl.h"
+#include "queue.tpp"
 
 #endif
