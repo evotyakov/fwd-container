@@ -1,6 +1,7 @@
 #ifndef NODE_H
 #define NODE_H
 
+// Узел
 template <typename T>
 class node
 {

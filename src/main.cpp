@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include "C:\Computer Science\cpp\fwd-container\include\stack.h"
 #include "C:\Computer Science\cpp\fwd-container\include\queue.h"
 
@@ -49,8 +50,9 @@ int main()
         // Тестирование оператора ввода
         std::cout << "\nTesting input operator" << std::endl;
         stack<int> stackInput;
-        std::cout << "Enter 3 integers for stack: ";
-        std::cin >> stackInput >> stackInput >> stackInput;
+        stackInput.push(0);
+        std::stringstream sin("1 2 3 4 5");
+        sin >> stackInput;
         std::cout << "Input stack: " << stackInput << std::endl;
         
         // Полиморфное использование
