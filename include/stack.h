@@ -75,19 +75,16 @@ private:
 
         T& operator*() override
         {
-            if (!current) throw InvalidIteratorException();
             return current->data;
         }
 
         T* operator->() override
         {
-            if (!current) throw InvalidIteratorException();
             return &(current->data);
         }
 
         stack_iterator& operator++() override
         {
-            if (!current) throw InvalidIteratorException();
             current = current->next;
             return *this;
         }
@@ -151,19 +148,16 @@ private:
 
         const T& operator*() const override
         {
-            if (!current) throw InvalidIteratorException();
             return current->data;
         }
 
         const T* operator->() const override
         {
-            if (!current) throw InvalidIteratorException();
             return &(current->data);
         }
 
         stack_const_iterator& operator++() override
         {
-            if (!current) throw InvalidIteratorException();
             current = current->next;
             return *this;
         }

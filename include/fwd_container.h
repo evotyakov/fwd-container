@@ -163,19 +163,16 @@ public:
 
         T& operator*()
         {
-            if (!ptr) throw InvalidIteratorException();
             return **ptr;
         }
 
         T* operator->()
         {
-            if (!ptr) throw InvalidIteratorException();
             return &(**ptr);
         }
 
         iterator& operator++()
         {
-            if (!ptr) throw InvalidIteratorException();
             ++(*ptr);
             return *this;
         }
@@ -189,29 +186,21 @@ public:
 
         bool operator==(const iterator& other) const
         {
-            if (!ptr && !other.ptr) return true;
-            if (!ptr || !other.ptr) return false;
             return *ptr == *other.ptr;
         }
 
         bool operator!=(const iterator& other) const
         {
-            if (!ptr && !other.ptr) return true;
-            if (!ptr || !other.ptr) return false;
             return !(*this == other);
         }
 
         bool operator==(const const_iterator& other) const
         {
-            if (!ptr && !other.ptr) return true;
-            if (!ptr || !other.ptr) return false;
             return *ptr == *other.ptr;
         }
 
         bool operator!=(const const_iterator& other) const
         {
-            if (!ptr && !other.ptr) return true;
-            if (!ptr || !other.ptr) return false;
             return !(*this == other);
         }
         
@@ -274,19 +263,16 @@ public:
 
         const T& operator*() const
         {
-            if (!ptr) throw InvalidIteratorException();
             return **ptr;
         }
 
         const T* operator->() const
         {
-            if (!ptr) throw InvalidIteratorException();
             return &(**ptr);
         }
 
         const_iterator& operator++()
         {
-            if (!ptr) throw InvalidIteratorException();
             ++(*ptr);
             return *this;
         }
@@ -300,29 +286,21 @@ public:
 
         bool operator==(const const_iterator& other) const
         {
-            if (!ptr && !other.ptr) return true;
-            if (!ptr || !other.ptr) return false;
             return *ptr == *other.ptr;
         }
 
         bool operator!=(const const_iterator& other) const
         {
-            if (!ptr && !other.ptr) return true;
-            if (!ptr || !other.ptr) return false;
             return !(*this == other);
         }
 
         bool operator==(const iterator& other) const
         {
-            if (!ptr && !other.ptr) return true;
-            if (!ptr || !other.ptr) return false;
             return *ptr == *other.ptr;
         }
 
         bool operator!=(const iterator& other) const
         {
-            if (!ptr && !other.ptr) return true;
-            if (!ptr || !other.ptr) return false;
             return !(*this == other);
         }
         

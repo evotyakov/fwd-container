@@ -2,8 +2,8 @@
 #include <sstream>
 #include <algorithm>
 #include <cmath>
-#include "C:\Computer Science\cpp\fwd-container\include\stack.h"
-#include "C:\Computer Science\cpp\fwd-container\include\queue.h"
+#include "stack.h"
+#include "queue.h"
 
 TEST(StackTest, Stack_Iterator)
 {

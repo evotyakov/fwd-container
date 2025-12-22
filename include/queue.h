@@ -62,9 +62,6 @@ protected:
     virtual std::istream& read(std::istream& is) override;
     
 private:
-    void copy_from(const queue& other);
-    void copy_from(const fwd_container<T>& other);
-
     class queue_iterator : public fwd_container<T>::iterator_base
     {
     private:
@@ -81,19 +78,16 @@ private:
 
         T& operator*() override
         {
-            if (!current) throw InvalidIteratorException();
             return current->data;
         }
 
         T* operator->() override
         {
-            if (!current) throw InvalidIteratorException();
             return &(current->data);
         }
 
         queue_iterator& operator++() override
         {
-            if (!current) throw InvalidIteratorException();
             current = current->next;
             return *this;
         }
@@ -157,19 +151,16 @@ private:
 
         const T& operator*() const override
         {
-            if (!current) throw InvalidIteratorException();
             return current->data;
         }
 
         const T* operator->() const override
         {
-            if (!current) throw InvalidIteratorException();
             return &(current->data);
         }
 
         queue_const_iterator& operator++() override
         {
-            if (!current) throw InvalidIteratorException();
             current = current->next;
             return *this;
         }
